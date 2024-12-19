@@ -1,6 +1,6 @@
 # 🐧 Linux Dotfiles Configuration
 
-Welcome to my **Linux Dotfiles** repository! 🎉 This repository is a collection of my personalized configurations, crafted to enhance productivity and streamline my Linux experience. Whether you're a beginner or a seasoned Linux user, you might find something useful here. 🚀
+Welcome to my **dotfiles** repository! 🎉 This repository is a collection of my personalized configurations, crafted to enhance productivity and streamline my Linux experience. Whether you're a beginner or a seasoned Linux user, you might find something useful here. 🚀
 
 ---
 
@@ -26,8 +26,8 @@ Each tool or plugin has its own directory containing relevant configuration file
 ### 1. Clone the Repository
 
 ```bash
-$ git clone https://github.com/yourusername/linux-dotfiles.git
-$ cd linux-dotfiles
+$ git clone https://github.com/juliencm-dev/dotfiles.git
+$ cd dotfiles
 ```
 
 ### 2. Install GNU Stow
