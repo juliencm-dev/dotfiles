@@ -11,9 +11,9 @@ Here's a glimpse of the configurations you can explore:
 ```
 📂 dotfiles/
  ├── 📂 kitty/        # Kitty shell setup
- ├── 📂 bash/         # Bash shell setup
  ├── 📂 tmux/         # Tmux session manager configs
  ├── 📂 hyprpaper/    # Hyprpaper wallpaper manager config
+ ├── 📂 hyprland/     # Hyperland configuration files
  ├── 📂 waybar/       # Waybar status bar configuration
 ```
 
