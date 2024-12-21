@@ -38,18 +38,18 @@
 
 @define-color warning 	@peach;
 @define-color critical	@red;
-@define-color mode	@base;
-@define-color unfocused	@mantle;
+@define-color mode	@overlay0;
+@define-color unfocused	@overlay1;
 @define-color focused	@teal;
 @define-color inactive	@mauve;
-@define-color sound	@green;
-@define-color network	@peach;
+@define-color sound	@pink;
+@define-color network	@blue;
 @define-color memory	@flamingo;
-@define-color cpu	@green;
-@define-color temp	@sapphire;
-@define-color layout	@lavender;
-@define-color battery	@blue;
-@define-color date	@crust;
+@define-color cpu	@sky;
+@define-color temp	@green;
+@define-color layout	@peach;
+@define-color battery	@overlay1;
+@define-color date	@surface1;
 @define-color time	@text;
 
 /* Reset all styles */
@@ -69,7 +69,7 @@
 	background: rgba(40, 40, 40, 0.8784313725); /* #282828e0 */
 	color: @white;
 	font-family: JetBrainsMono Nerd Font, Siji;
-	font-size: 12pt;
+	font-size: 12.5pt;
 	/*font-weight: bold;*/
 }
 
@@ -81,7 +81,6 @@
 #memory,
 #mode,
 #network,
-#pulseaudio,
 #temperature,
 #tray,
 #backlight,
@@ -119,7 +118,7 @@
 
 /* Current sway mode (resize etc) */
 #mode {
-	color: @text;
+	color: @base;
 	background: @mode;
 }
 
@@ -134,7 +133,7 @@
 
 /* Inactive (on unfocused output) */
 #workspaces button.visible {
-	color: @text;
+	color: @base;
 	background: @inactive;
 }
 
@@ -152,8 +151,12 @@
 
 /* Style when cursor is on the button */
 #workspaces button:hover {
-	background: @base;
-	color: @mantle;
+	background: @overlay0;
+	color: @base;
+}
+#pulseaudio {
+	padding-right: 8pt;
+	padding-left: 2pt;
 }
 
 #window {
@@ -225,12 +228,6 @@
 #custom-arrow3 {
 	font-size: 11pt;
 	color: @layout;
-	background: @battery;
-}
-
-#custom-arrow4 {
-	font-size: 11pt;
-	color: @battery;
 	background: @temp;
 }
 
@@ -243,12 +240,6 @@
 #custom-arrow6 {
 	font-size: 11pt;
 	color: @cpu;
-	background: @memory;
-}
-
-#custom-arrow7 {
-	font-size: 11pt;
-	color: @memory;
 	background: @network;
 }
 
@@ -259,13 +250,14 @@
 }
 
 #custom-arrow9 {
-	font-size: 11pt;
+	font-size: 12pt;
 	color: @sound;
 	background: transparent;
+	min-width: 10px;
 }
 
 #custom-arrow10 {
-	font-size: 11pt;
+	font-size: 12pt;
 	color: @unfocused;
 	background: transparent;
 }
