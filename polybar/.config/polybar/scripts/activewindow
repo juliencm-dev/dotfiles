@@ -1,0 +1,24 @@
+
+#!/bin/bash
+
+# Get the ID of the active window
+win_id=$(xprop -root _NET_ACTIVE_WINDOW | awk -F'# ' '{print $2}')
+
+# Check if win_id is invalid (0x0)
+if [[ "$win_id" == "0x0" || -z "$win_id" ]]; then
+  echo ""
+  exit 0
+fi
+
+# Get the name of the active window
+win_name=$(xprop -id "$win_id" _NET_WM_NAME 2>/dev/null | cut -d '"' -f 2)
+
+# Check if win_name is empty or invalid
+if [[ -z "$win_name" ]]; then
+  echo ""
+  exit 0
+fi
+
+# Print the window name
+echo "$win_name"
+
