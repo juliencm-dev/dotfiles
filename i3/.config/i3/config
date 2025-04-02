@@ -62,7 +62,7 @@ bindsym $mod+Shift+s exec $HOME/.config/i3/scripts/screenshot
 bindsym $mod+c kill
 
 # start dmenu (a program launcher)
-bindsym $mod+space exec rofi -show drun -show-icons
+bindsym $mod+space exec rofi -show combi -show-icons
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+space exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
