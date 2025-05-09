@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+# Define the state file location
+STATE_FILE="$HOME/.display"
+
+# Function to toggle display modes
+display() {
+    # Read current state
+    current_state=$(cat "$STATE_FILE")
+
+    if [ "$current_state" = "laptop" ]; then
+        # Switch to external display
+        echo "Switching to external display"
+        xrandr --output DisplayPort-0 --primary --mode 3840x1600 --pos 0x0 --rotate normal --output eDP --off
+
+        # Kill polybar and restart it
+        killall polybar
+        sleep 1
+
+        # Update state
+        echo "external" > "$STATE_FILE"
+
+        # Reload i3
+        i3-msg reload
+    else
+        # Switch to laptop display
+        echo "Switching to laptop display"
+        xrandr --output eDP --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DisplayPort-0 --off
+
+        # Kill polybar and restart it
+        killall polybar
+        sleep 1
+
+        # Update state
+        echo "laptop" > "$STATE_FILE"
+
+        # Reload i3
+        i3-msg reload
+    fi
+}
+
+display

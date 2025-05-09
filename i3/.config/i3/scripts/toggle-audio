@@ -1,0 +1,62 @@
+#!/bin/bash
+# Save as ~/.config/i3/scripts/toggle-audio
+
+# Define our three specific sinks by name
+HDMI_NAME="alsa_output.pci-0000_07_00.1.HiFi__HDMI1__sink"
+LAPTOP_NAME="alsa_output.pci-0000_07_00.6.HiFi__Speaker__sink"
+HEADPHONE_NAME="alsa_output.usb-Sonova_Consumer_Hearing_MOMENTUM_4_30284BD0C1EE16AB3C08-01.analog-stereo"
+
+# Function to get current default sink using pactl
+get_default_sink() {
+    pactl info | grep "Default Sink" | cut -d: -f2 | xargs
+}
+
+# Function to switch sinks using pactl
+switch_sink() {
+    # Set the new default sink
+    pactl set-default-sink "$1"
+
+    # Move all active audio streams to the new sink
+    pactl list short sink-inputs | cut -f1 | while read stream; do
+        pactl move-sink-input "$stream" "$1"
+    done
+}
+
+# Function for safe notifications
+safe_notify() {
+    # Try using notify-send, but don't error if it fails
+    notify-send "$1" 2>/dev/null || echo "Switched audio: $1" >/dev/null
+
+    # Optional: Display on polybar using polybar-msg if available
+    if command -v polybar-msg &>/dev/null; then
+        polybar-msg hook audio-device 1 >/dev/null 2>&1
+    fi
+}
+
+# Get current default sink
+CURRENT=$(get_default_sink)
+
+# Extract friendly name for notifications
+get_friendly_name() {
+    case "$1" in
+        *"HDMI1"*) echo "HDMI Display" ;;
+        *"Speaker"*) echo "Laptop Speakers" ;;
+        *"MOMENTUM"*) echo "MOMENTUM 4 Headphones" ;;
+        *) echo "$1" ;;
+    esac
+}
+
+# Cycle through the sinks
+if [[ "$CURRENT" == *"HDMI1"* ]]; then
+    # Switch to laptop speakers
+    switch_sink "$LAPTOP_NAME"
+    safe_notify "Audio switched to $(get_friendly_name "$LAPTOP_NAME")"
+elif [[ "$CURRENT" == *"Speaker"* ]]; then
+    # Switch to headphones
+    switch_sink "$HEADPHONE_NAME"
+    safe_notify "Audio switched to $(get_friendly_name "$HEADPHONE_NAME")"
+else
+    # Switch to HDMI
+    switch_sink "$HDMI_NAME"
+    safe_notify "Audio switched to $(get_friendly_name "$HDMI_NAME")"
+fi
