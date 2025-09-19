@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 # Set a custom session root path for macOS
@@ -15,35 +16,15 @@ else
 fi
 
 # Set the session root directory
-session_root "$ACTUAL_HOME/project/work/EDUQlasse-STEM-Voix-Voices/"
+session_root "$ACTUAL_HOME/project/perso/liftarchives-client/src"
 echo "Session root set to: $session_root"
 
 # Create session with specified name if it does not already exist
-if initialize_session "stem-voices"; then
+if initialize_session "liftarchives-client"; then
+
   # Create the app window with a vertical split and horizontal panes on the right
-  new_window "app"
-
-  # Create a vertical split with the right pane taking up 1/3 of the window
-  split_h 33
-
-  # In the right pane, create 3 horizontal splits
-  run_cmd "cd $session_root && clear" "$pane"
-  split_v 66
-  run_cmd "cd $session_root && clear" "$pane"
-  split_v 50
-  run_cmd "cd $session_root && clear" "$pane"
-
-  # Configure the panes to run the specified commands
-  select_pane 2
-  run_cmd "npm run dev"
-  select_pane 3
-  run_cmd "npm run db:studio"
-  select_pane 4
-  run_cmd "clear"
-
-  # Go back to the main left pane and open neovim
-  select_pane 1
-  run_cmd "nvim ./src/"
+  new_window "code"
+  run_cmd "cd $session_root && clear && nvim ."
 
   # Create git window with lazygit
   new_window "git"
@@ -52,6 +33,9 @@ if initialize_session "stem-voices"; then
   # Create logs window (blank)
   new_window "logs"
   run_cmd "cd $session_root && clear"
+
+  new_window "server"
+  run_cmd "npm run dev"
 
   # Select the first window (app) when session starts
   select_window 1
