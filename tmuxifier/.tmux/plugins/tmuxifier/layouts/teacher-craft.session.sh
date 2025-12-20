@@ -10,22 +10,25 @@ else
   ACTUAL_HOME="$HOME"
   echo "Using standard HOME: $ACTUAL_HOME"
 fi
-session_root "$ACTUAL_HOME/project/work/calculus-buddy"
+
+session_root "$ACTUAL_HOME/project/work/teacher-craft-api"
+ui_root="$ACTUAL_HOME/project/work/teacher-craft-web"
+
 # Create session with specified name if it does not already exist. If no
 # argument is given, session name will be based on layout file name.
-if initialize_session "calculus-buddy"; then
+if initialize_session "teacher-craft"; then
   new_window "server"
   split_h 33
   select_pane 1
-  run_cmd "cd $session_root/server && clear && nvim ."
+  run_cmd "cd $session_root && clear && nvim ."
   new_window "client"
   split_h 33
   select_pane 1
-  run_cmd "cd $session_root/client && clear && nvim ."
-  new_window "git"
+  run_cmd "cd $ui_root && clear && nvim ."
+  new_window "api-git"
   run_cmd "cd $session_root && lazygit"
-  new_window "logs"
-  run_cmd "cd $session_root && clear"
+  new_window "ui-git"
+  run_cmd "cd $ui_root && lazygit"
   select_window 1
 fi
 # Finalize session creation and switch/attach to it.

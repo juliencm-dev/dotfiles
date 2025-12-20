@@ -1,190 +1,121 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
+
 format = """
-[](surface0)\
-$os\
-$username\
-[](bg:peach fg:surface0)\
 $directory\
-[](fg:peach bg:green)\
 $git_branch\
 $git_status\
-[](fg:green bg:teal)\
-$c\
-$rust\
-$golang\
-$nodejs\
-$php\
-$java\
-$kotlin\
-$haskell\
+$fill\
 $python\
-[](fg:teal bg:blue)\
+$lua\
+$nodejs\
+$golang\
+$aws\
 $docker_context\
-[](fg:blue bg:purple)\
-$time\
-[ ](fg:purple)\
-$line_break$character"""
+$jobs\
+$cmd_duration\
+$line_break\
+$character"""
 
-palette = 'catppuccin_mocha'
+add_newline = true
+palette = "minicode"
 
-[palettes.gruvbox_dark]
-color_fg0 = '#fbf1c7'
-color_bg1 = '#3c3836'
-color_bg3 = '#665c54'
-color_blue = '#458588'
-color_aqua = '#689d6a'
-color_green = '#98971a'
-color_orange = '#d65d0e'
-color_purple = '#b16286'
-color_red = '#cc241d'
-color_yellow = '#d79921'
 
-[palettes.catppuccin_mocha]
-rosewater = "#f5e0dc"
-flamingo = "#f2cdcd"
-pink = "#f5c2e7"
-orange = "#cba6f7"
-red = "#f38ba8"
-maroon = "#eba0ac"
-peach = "#fab387"
-yellow = "#f9e2af"
-green = "#a6e3a1"
-teal = "#94e2d5"
-sky = "#89dceb"
-sapphire = "#74c7ec"
-blue = "#89b4fa"
-lavender = "#b4befe"
-text = "#cdd6f4"
-subtext1 = "#bac2de"
-subtext0 = "#a6adc8"
-overlay2 = "#9399b2"
-overlay1 = "#7f849c"
-overlay0 = "#6c7086"
-surface2 = "#585b70"
-surface1 = "#45475a"
-surface0 = "#313244"
-base = "#1e1e2e"
-mantle = "#181825"
-crust = "#11111b"
+# --- palette ---------------------------------------------------------------
+[palettes.minicode]
+  bg_base = '#1e1e1e'
+  bg_alt = '#262626'
+  bg_float = '#323232'
 
-[os]
-disabled = false
-style = "bg:surface0 fg:text"
+  tan_50 = '#ddd9d5'
+  tan_100 = '#D6C1A9'
+  tan_200 = '#c5a785'
+  tan_400 = '#b58e63'
+  tan_600 = '#ac8252'
+  tan_700 = '#9b754a'
+  tan_800 = '#896842'
+  tan_900 = '#785b39'
 
-[os.symbols]
-Windows = "󰍲"
-Ubuntu = "󰕈"
-SUSE = ""
-Raspbian = "󰐿"
-Mint = "󰣭"
-Macos = ""
-Manjaro = ""
-Linux = "󰌽"
-Gentoo = "󰣨"
-Fedora = "󰣛"
-Alpine = ""
-Amazon = ""
-Android = ""
-Arch = "󰣇"
-Artix = "󰣇"
-CentOS = ""
-Debian = "󰣚"
-Redhat = "󱄛"
-RedHatEnterprise = "󱄛"
+  muted = '#5e5a55'
+  faded = '#383532'
+  error = '#941919'
+  warn = '#916d00'
+  success = '#737300'
+  info = '#6b7a78'
 
-[username]
-show_always = true
-style_user = "bg:surface0 fg:text"
-style_root = "bg:surface0 fg:text"
-format = '[ $user ]($style)'
+
+# --- modules ---------------------------------------------------------------
+[fill]
+style = "fg:muted"
 
 [directory]
-style = "fg:mantle bg:peach"
-format = "[ $path ]($style)"
+style = "bold fg:tan_100"
+format = "[$path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
+truncate_to_repo = false
 
 [directory.substitutions]
-"Documents" = "󰈙 "
+"Documents" = "󰈙"
 "Downloads" = " "
-"Music" = "󰝚 "
-"Pictures" = " "
-"Developer" = "󰲋 "
+"Music"     = " "
+"Pictures"  = " "
 
 [git_branch]
-symbol = ""
-style = "bg:teal"
-format = '[[ $symbol $branch ](fg:base bg:green)]($style)'
+style = "fg:tan_400"
+symbol = " "
+format = "[on](fg:tan_50) [$symbol$branch ]($style)"
 
 [git_status]
-style = "bg:teal"
-format = '[[($all_status$ahead_behind )](fg:base bg:green)]($style)'
-
-[nodejs]
-symbol = ""
-style = "bg:teal"
-format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
-
-[c]
-symbol = " "
-style = "bg:teal"
-format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
-
-[rust]
-symbol = ""
-style = "bg:teal"
-format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
-
-[golang]
-symbol = ""
-style = "bg:teal"
-format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
-
-[php]
-symbol = ""
-style = "bg:teal"
-format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
-
-[java]
-symbol = " "
-style = "bg:teal"
-format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
-
-[kotlin]
-symbol = ""
-style = "bg:teal"
-format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
-
-[haskell]
-symbol = ""
-style = "bg:teal"
-format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
+style = "fg:tan_200"
+format = "([$all_status$ahead_behind]($style) )"
 
 [python]
-symbol = ""
-style = "bg:teal"
-format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
+style = "fg:tan_200"
+symbol = " "
+format = "[${symbol}${pyenv_prefix}(${version} )(\\[$virtualenv\\] )]($style)"
+pyenv_version_name = true
+pyenv_prefix = ""
+
+[lua]
+style = "fg:tan_400"
+symbol = " "
+format = "[$symbol]($style) "
+
+[nodejs]
+style = "fg:tan_200"
+symbol = " "
+format = "[$symbol]($style) "
+
+[golang]
+style = "fg:tan_200"
+symbol = " "
+format = "[$symbol]($style) "
+
+[aws]
+symbol = " "
+style = "fg:warn"
+format = "[$symbol($profile )(\\[$duration\\] )]($style)"
 
 [docker_context]
-symbol = ""
-style = "bg:mantle"
-format = '[[ $symbol( $context) ](fg:#83a598 bg:color_bg3)]($style)'
+symbol = " "
+style = "fg:info"
+format = "[$symbol]($style) $path"
+detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
+detect_extensions = ["Dockerfile"]
 
-[time]
-disabled = false
-time_format = "%R"
-style = "bg:peach"
-format = '[[  $time ](fg:mantle bg:purple)]($style)'
+[jobs]
+symbol = " "
+style = "fg:tan_400"
+number_threshold = 1
+format = "[$symbol]($style)"
 
-[line_break]
-disabled = false
+[cmd_duration]
+min_time = 500
+style = "fg:muted"
+format = "[$duration]($style)"
 
 [character]
-disabled = false
-success_symbol = '[](bold fg:green)'
-error_symbol = '[](bold fg:red)'
-vimcmd_symbol = '[](bold fg:creen)'
-vimcmd_replace_one_symbol = '[](bold fg:purple)'
-vimcmd_replace_symbol = '[](bold fg:purple)'
-vimcmd_visual_symbol = '[](bold fg:lavender)'
+success_symbol = "[❯](fg:tan_400)"
+error_symbol   = "[❯](fg:error)"
+
