@@ -1,6 +1,5 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-
 format = """
 $directory\
 $git_branch\
@@ -18,104 +17,101 @@ $line_break\
 $character"""
 
 add_newline = true
-palette = "minicode"
+palette = "tokyonight"
 
 
 # --- palette ---------------------------------------------------------------
-[palettes.minicode]
-  bg_base = '#1e1e1e'
-  bg_alt = '#262626'
-  bg_float = '#323232'
+[palettes.tokyonight]
+  bg_base   = '#1a1b26'
+  bg_dark   = '#16161e'
+  bg_hl     = '#292e42'
+  terminal  = '#414868'
 
-  tan_50 = '#ddd9d5'
-  tan_100 = '#D6C1A9'
-  tan_200 = '#c5a785'
-  tan_400 = '#b58e63'
-  tan_600 = '#ac8252'
-  tan_700 = '#9b754a'
-  tan_800 = '#896842'
-  tan_900 = '#785b39'
+  fg        = '#c0caf5'
+  fg_dark   = '#a9b1d6'
+  muted     = '#565f89'
 
-  muted = '#5e5a55'
-  faded = '#383532'
-  error = '#941919'
-  warn = '#916d00'
-  success = '#737300'
-  info = '#6b7a78'
+  blue      = '#7aa2f7'
+  cyan      = '#7dcfff'
+  teal      = '#73daca'
+  green     = '#9ece6a'
+  magenta   = '#bb9af7'
+  orange    = '#ff9e64'
+  red       = '#f7768e'
+  yellow    = '#e0af68'
 
 
 # --- modules ---------------------------------------------------------------
 [fill]
-style = "fg:muted"
+style = "fg:terminal"
 
 [directory]
-style = "bold fg:tan_100"
-format = "[$path ]($style)"
+style = "bold fg:bg_base bg:magenta"
+format = "[  $path ]($style)[\ue0bc](fg:magenta bg:bg_base)"
 truncation_length = 3
 truncation_symbol = "…/"
 truncate_to_repo = false
 
 [directory.substitutions]
 "Documents" = "󰈙"
-"Downloads" = " "
-"Music"     = " "
-"Pictures"  = " "
+"Downloads" = " "
+"Music"     = " "
+"Pictures"  = " "
 
 [git_branch]
-style = "fg:tan_400"
-symbol = " "
-format = "[on](fg:tan_50) [$symbol$branch ]($style)"
+style = "bold fg:bg_base bg:blue"
+symbol = " "
+format = "[\ue0ba](fg:blue bg:bg_base)[ $symbol$branch ]($style)[\ue0bc](fg:blue bg:bg_base) "
 
 [git_status]
-style = "fg:tan_200"
+style = "fg:orange"
 format = "([$all_status$ahead_behind]($style) )"
 
 [python]
-style = "fg:tan_200"
-symbol = " "
+style = "fg:yellow"
+symbol = " "
 format = "[${symbol}${pyenv_prefix}(${version} )(\\[$virtualenv\\] )]($style)"
 pyenv_version_name = true
 pyenv_prefix = ""
 
 [lua]
-style = "fg:tan_400"
-symbol = " "
+style = "fg:blue"
+symbol = " "
 format = "[$symbol]($style) "
 
 [nodejs]
-style = "fg:tan_200"
-symbol = " "
+style = "fg:green"
+symbol = " "
 format = "[$symbol]($style) "
 
 [golang]
-style = "fg:tan_200"
-symbol = " "
+style = "fg:cyan"
+symbol = " "
 format = "[$symbol]($style) "
 
 [aws]
-symbol = " "
-style = "fg:warn"
+symbol = " "
+style = "fg:orange"
 format = "[$symbol($profile )(\\[$duration\\] )]($style)"
 
 [docker_context]
-symbol = " "
-style = "fg:info"
+symbol = " "
+style = "fg:cyan"
 format = "[$symbol]($style) $path"
 detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
 detect_extensions = ["Dockerfile"]
 
 [jobs]
-symbol = " "
-style = "fg:tan_400"
+symbol = " "
+style = "fg:magenta"
 number_threshold = 1
 format = "[$symbol]($style)"
 
 [cmd_duration]
 min_time = 500
 style = "fg:muted"
-format = "[$duration]($style)"
+format = "[ $duration]($style)"
 
 [character]
-success_symbol = "[❯](fg:tan_400)"
-error_symbol   = "[❯](fg:error)"
-
+success_symbol = "[❯](bold fg:magenta)"
+error_symbol   = "[❯](bold fg:red)"

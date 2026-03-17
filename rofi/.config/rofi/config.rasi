@@ -1,4 +1,4 @@
-@import "catppuccin-mocha"
+@import "tokyonight"
 
 * {
   selected-active-foreground:  @background;
